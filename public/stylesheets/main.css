@@ -112,4 +112,18 @@
     font-size: 18px;
     line-height: 24px;
   }
+
+  div.button, input.submit {
+    display: inline-block;
+    background-color: #1DA1F2;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.1em;
+  }
+
+  div.button a {
+    color: #FFF;
+    font-weight: 700;
+    text-decoration: none;
+  }
 }
