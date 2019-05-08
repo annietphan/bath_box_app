@@ -1,0 +1,9 @@
+<% if flash.has?(:message) %>
+<p><%= flash[:message] %></p>
+<% end %>
+
+<h2>Welcome to your dashboard, <%= @user.username.capitalize %>!</h2><br>
+
+<h4>Customize a new box <a href="/boxes/new">HERE</a></h4>
+
+<p><a href="/logout">Log Out</a></p>
