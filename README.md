@@ -31,7 +31,7 @@ There are currently no tests.
 
 ## Submitting changes
 
-Please send a [GitHub Pull Request to annietphan](https://github.com/annietphan/bathbox/pulls) with a list of what you've done.
+Please send a [GitHub Pull Request to annietphan](https://github.com/annietphan/bath-box/pulls) with a list of what you've done.
 
 ## License
-  [License](https://github.com/annietphan/bathbox/blob/master/LICENSE)
+  [License](https://github.com/annietphan/bath-box/blob/master/LICENSE)
