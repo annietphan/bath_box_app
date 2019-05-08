@@ -14,13 +14,13 @@ class BoxesController < ApplicationController
 
   post '/boxes' do
     #go back and see if this still creates a box without a field filled out
-    if params != ""
+    if params[:box_name].empty? || params[:box_description].empty? || params[:products].nil?
+      flash[:message] = "Please fill out all fields!"
+      redirect "/boxes/new"
+    else
       box = Box.create(name: params[:box_name], description: params[:box_description], product_ids: params[:products], user_id: session[:user_id])
       flash[:message] = "You've successfully created a new box!"
       redirect "/boxes/#{box.slug}"
-    else
-      flash[:message] = "Fill out all fields to continue!"
-      redirect "/boxes/new"
     end
   end
 
@@ -48,14 +48,8 @@ class BoxesController < ApplicationController
   patch '/boxes/:slug' do
     box = Box.find_by_slug(params[:slug])
     if box.user == current_user(session)
-      if params[:box_name].empty?
-        flash[:message] = "Please include a name!"
-        redirect "/boxes/#{box.slug}/edit"
-      elsif params[:box_description].empty?
-        flash[:message] = "Please include description!"
-        redirect "/boxes/#{box.slug}/edit"
-      elsif params[:products].nil?
-        flash[:message] = "Please select at least one product!"
+      if params[:box_name].empty? || params[:box_description].empty? || params[:products].nil?
+        flash[:message] = "Please fill out all fields!"
         redirect "/boxes/#{box.slug}/edit"
       else
         box.update(name: params[:box_name], description: params[:box_description], product_ids: params[:products])
