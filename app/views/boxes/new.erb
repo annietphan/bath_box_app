@@ -4,3 +4,27 @@
 
 <% if flash.has?(:message) %>
 <%= flash[:message] %>
+<% end %>
+
+<h2>Customize a New Box:</h2>
+
+<form action="/boxes" method="post">
+  <label for="box_name">Box Name:</label>
+  <input type="text" name="box_name" id="box_name">
+  <br></br>
+
+  <label for="box_description">Description:</label>
+  <input type="text" name="box_description" id="box_description">
+  <br></br>
+
+  <label for="products">Please select from existing product inventory:</label>
+  <br></br>
+  <% Product.all.each do |product| %>
+  <li>
+    <input type="checkbox" name="products[]" value="<%= product.id %>"><%= product.name %> // <small><%=product.category%></small></input>
+  </li>
+  <% end %>
+  <br>
+
+  <input type="submit" value="Create Box">
+</form>

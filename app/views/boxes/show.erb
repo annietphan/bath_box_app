@@ -1,0 +1,21 @@
+<% if flash.has?(:message) %>
+<%= flash[:message] %>
+<% end %>
+
+<a href="/myaccount">Home</a> // <a href="/boxes/<%= @box.slug %>/edit">Edit Box</a> // <a href="/products">Product Catalog</a>
+
+<h2>Box Name: <%= @box.name %></h2>
+<small>(created by: <%= @box.user.username %>)</small><br></br>
+<h4>Description: <%= @box.description %></h4><br>
+
+<p>Products Included:<br>
+  <% @box.products.each do |product| %>
+  <li><a href="/boxes/<%= product.slug %>"><%= product.name %></a>
+  </li>
+  <% end %>
+
+<br>
+<form action="boxes/<%= @box.slug %>"/delete" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Box">
+</form>

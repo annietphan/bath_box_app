@@ -1,0 +1,28 @@
+<% if flash.has?(:message) %>
+<%= flash[:message] %>
+<% end %>
+
+<h2>Edit Box: <%=@box.name%></h2>
+
+<form action="/boxes/<%=@box.slug%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <label for="box_name">Box Name:</label>
+  <input type="text" name="box_name" value="<%=@box.name%>">
+  <br></br>
+
+  <label for="box_description">Description:</label>
+  <input type="text" name="box_description" value="<%=@box.description%>">
+  <br></br>
+
+  <label for="products">Included Products:</label>
+  <br><small>(uncheck to remove from the box)</small><br>
+  <% Product.all.each do |product|%>
+  <li>
+    <input type="checkbox" name="products[]" value="<%= product.id %>"
+      <%= 'checked' if @box.products.include?(product) %>><%= product.name %> // <small><%= product.category %></small></input>
+    <% end %>
+  </li>
+  <br>
+  <input type="submit" value="Update Box">
+</form>
