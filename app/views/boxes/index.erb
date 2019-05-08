@@ -1,0 +1,7 @@
+<h1>All Existing Boxes in Inventory</h1>
+
+<% Box.all.each do |box| %>
+<ul>
+  <li><h3><%= box.name %> // <small><a href="/boxes/<%= box.slug %>">click for more details</a></small></h3>
+</ul>
+<% end %>

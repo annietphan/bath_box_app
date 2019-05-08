@@ -1,0 +1,9 @@
+<% if flash.has?(:message) %>
+<%= flash[:message] %>
+<% end %>
+
+<h2>Product Name: <%= @product.name %></h2>
+
+Product Category: <%= @product.category %><br></br>
+Main Essential Oil: <%= @product.oil %><br></br>
+Benefit: <%= @product.benefit %>

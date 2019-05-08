@@ -10,12 +10,12 @@
 
 <p>Products Included:<br>
   <% @box.products.each do |product| %>
-  <li><a href="/boxes/<%= product.slug %>"><%= product.name %></a>
+  <li><a href="/products/<%= product.slug %>"><%= product.name %></a>
   </li>
   <% end %>
 
 <br>
-<form action="boxes/<%= @box.slug %>"/delete" method="post">
+<form action="/boxes/<%= @box.slug %>/delete" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Box">
 </form>

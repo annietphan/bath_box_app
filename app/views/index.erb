@@ -1,4 +1,7 @@
 <div class="container">
+  <% if flash.has?(:message) %>
+  <%= flash[:message] %>
+  <% end %>
     <h2>Welcome to BathBox!</h2>
 
     <div class="content">

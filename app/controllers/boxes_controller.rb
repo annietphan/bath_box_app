@@ -1,19 +1,19 @@
 class BoxesController < ApplicationController
 
   get '/boxes' do
+    erb :'boxes/index'
   end
 
   get '/boxes/new' do
     if logged_in?(session)
       erb :'boxes/new'
     else
-      flash[:message] = "Please sign up/log in to view this page!"
+      flash[:message] = "Please sign up/log in create a box!"
       redirect '/'
     end
   end
 
   post '/boxes' do
-    #go back and see if this still creates a box without a field filled out
     if params[:box_name].empty? || params[:box_description].empty? || params[:products].nil?
       flash[:message] = "Please fill out all fields!"
       redirect "/boxes/new"
@@ -25,13 +25,8 @@ class BoxesController < ApplicationController
   end
 
   get '/boxes/:slug' do
-    if logged_in?(session)
       @box = Box.find_by_slug(params[:slug])
       erb :'boxes/show'
-    else
-      flash[:message] = "Please sign up/log in to view this page!"
-      redirect '/'
-    end
   end
 
   get '/boxes/:slug/edit' do
@@ -41,7 +36,7 @@ class BoxesController < ApplicationController
       erb :'boxes/edit'
     else
       flash[:message] = "This is not your box to edit!"
-      redirect '/myaccount'
+      redirect "/boxes/#{@box.slug}"
     end
   end
 
@@ -57,6 +52,23 @@ class BoxesController < ApplicationController
     else
       flash[:message] = "This is not your box to edit!"
       redirect '/myaccount'
+    end
+  end
+
+  delete '/boxes/:slug/delete' do
+    box = Box.find_by_slug(params[:slug])
+    if logged_in?(session)
+      if box.user == current_user(session)
+        box.delete
+        flash[:message] = "Box successfully deleted!"
+        redirect '/myaccount'
+      else
+        flash[:message] = "This is not your box to delete!"
+        redirect "/boxes/#{box.slug}"
+      end
+    else
+      flash[:message] = "Please log in or sign up to continue!"
+      redirect '/'
     end
   end
 
