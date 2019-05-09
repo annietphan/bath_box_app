@@ -1,7 +1,7 @@
-BathBox Sinatra MVC App
+# BathBox Sinatra MVC App
 ---
 
-# Description
+## Description
 
 This is a Sinatra Portfolio Project for Flatiron School that allows users to create an account where they can customize boxes of various bath products such as bath bombs, bubble bars, etc.
 
@@ -17,11 +17,11 @@ And then:
 
 And then:
 
-    $rake db:seed
+    $ rake db:seed
 
 In your terminal, run 'shotgun'. Copy and paste the link into your browser to start the application.
 
-# Contributing
+## Contributing
 
 Thank you for wanting to contribute to this project. I will assume that you have already utilized or looked at the project. If not, please do.
 
