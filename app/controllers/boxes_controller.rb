@@ -1,10 +1,12 @@
 class BoxesController < ApplicationController
 
   get '/boxes' do
+    # can see this even when not logged in
     erb :'boxes/index'
   end
 
   get '/boxes/new' do
+    #have to be logged in to see this page
     if logged_in?(session)
       erb :'boxes/new'
     else
@@ -25,11 +27,13 @@ class BoxesController < ApplicationController
   end
 
   get '/boxes/:slug' do
+    #can see this even if you're not logged in
       @box = Box.find_by_slug(params[:slug])
       erb :'boxes/show'
   end
 
   get '/boxes/:slug/edit' do
+    #can only see this if you're logged in & this is your box to edit
     @box = Box.find_by_slug(params[:slug])
 
     if logged_in?(session) && @box.user == current_user(session)
@@ -41,6 +45,7 @@ class BoxesController < ApplicationController
   end
 
   patch '/boxes/:slug' do
+    #can only patch if this is your box to edit
     box = Box.find_by_slug(params[:slug])
     if box.user == current_user(session)
       if params[:box_name].empty? || params[:box_description].empty? || params[:products].nil?
@@ -56,6 +61,8 @@ class BoxesController < ApplicationController
   end
 
   delete '/boxes/:slug/delete' do
+
+    #can only see this if it's your box to delete and if you're logged in
     box = Box.find_by_slug(params[:slug])
     if logged_in?(session)
       if box.user == current_user(session)
