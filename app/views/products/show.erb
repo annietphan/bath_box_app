@@ -1,6 +1,8 @@
 <% if flash.has?(:message) %>
 <%= flash[:message] %>
-<% end %>
+<% end %><br>
+
+<a href="/myaccount"><%= current_user(session).username %>'s Dashboard</a> // <a href="/boxes">Box Catalog</a> // <a href="/products">Product Catalog</a> // <a href="/products/<%= @product.slug %>/edit">Edit Product</a><
 
 <h2>Product Name: <%= @product.name %></h2>
 

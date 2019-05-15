@@ -1,9 +1,26 @@
 <% if flash.has?(:message) %>
 <%= flash[:message] %>
-<% end %>
+<% end %><br>
 
-<h2>Welcome to your dashboard, <%= @user.username.capitalize %>!</h2><br>
+<h2>Welcome to your dashboard, <%= current_user(session).username.capitalize %>!</h2><br>
 
-<h4>Customize a new box <a href="/boxes/new">HERE</a></h4>
+<h4>Please see all BathBoxes you've created below: </h4> <br>
+<ul>
+  <% @user.boxes.each do |box| %>
+    <li><%= box.name %> // <small><a href="/boxes/<%= box.slug %>">details</a></small></li>
+  <% end %>
+  <br></br>
+
+Customize a new box <a href="/boxes/new">HERE</a><br></br>
+Want to check out all BathBoxes in inventory -> Check out the <a href="/boxes">BathBox Catalog</a><br></br>
+Want to check out all available products in inventory? -> Check out the <a href="/products">Product Catalog</a><br></br>
+Want to visit the Mixing Studio to create your own product -> Click <a href="/products/new">HERE</a><br></br>
 
 <p><a href="/logout">Log Out</a></p>
+
+
+<!-- DONE - Need to list out all boxes belonging to the user in this index/dashboard page -->
+<!-- DONE - Need to include a link to check out ALL BOXES period created by all users for the logged in user to view-->
+<!-- Need to list out all products that the current user has used -->
+<!-- DONE - Need to include a link to check out ALL PRODUCTS in inventory -->
+<!-- MAYBE included feature but probably will skip it - Include a link to the mixing library to make your own produce product/new erb -->
