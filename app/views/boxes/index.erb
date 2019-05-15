@@ -1,10 +1,12 @@
-<h1>All Existing Boxes in Inventory</h1>
+<p><a href="/myaccount"><%= current_user(session).username.capitalize %>'s Dashboard</a> // <a href="/boxes/new">Create Box</a> // <a href="/products">Product Catalog</a></p>
+<h2>Box Catalog // <small>all existing boxes in inventory</small></h2>
 
 <% Box.all.each do |box| %>
 <ul>
-  <li><h3><%= box.name %> // <small><a href="/boxes/<%= box.slug %>">click for more details</a></small></h3>
+  <li><%= box.name %> // <small><a href="/boxes/<%= box.slug %>">click for more details</a></small>
 </ul>
 <% end %>
+<br></br><a href="/logout">Log Out</a>
 
 <!-- lists all boxes in the database // Box Catalog-->
 <!-- link to create your own Box links to box/new.erb -->

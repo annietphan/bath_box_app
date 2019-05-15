@@ -6,6 +6,7 @@
 <%= flash[:message] %>
 <% end %><br>
 
+<p><a href="/myaccount"><%= current_user(session).username.capitalize %>'s Dashboard</a> // <a href="/boxes">Box Catalog</a> // <a href="/products">Product Catalog</a>
 <h2>Customize a New Box:</h2>
 
 <form action="/boxes" method="post">
@@ -28,6 +29,7 @@
 
   <input type="submit" value="Create Box">
 </form>
+<br></br><a href="/logout">Log Out</a>
 
 <!-- show current_user.username -->
 <!-- link to dashboard -->

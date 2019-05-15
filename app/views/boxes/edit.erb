@@ -1,7 +1,7 @@
 <% if flash.has?(:message) %>
 <%= flash[:message] %>
 <% end %><br>
-
+<p><a href="/myaccount"><%= current_user(session).username.capitalize %>'s Dashboard</a> // <a href="/boxes">Box Catalog</a> // <a href="/products">Product Catalog</a></p>
 <h2>Edit Box: <%=@box.name%></h2>
 
 <form action="/boxes/<%=@box.slug%>" method="post">
@@ -26,6 +26,8 @@
   <br>
   <input type="submit" value="Update Box">
 </form>
+
+<br></br><a href="/logout">Log Out</a>
 
 <!-- edit only a box that you've created -->
 <!-- show current_user.username -->

@@ -2,7 +2,7 @@
 <%= flash[:message] %>
 <% end %><br>
 
-<a href="/myaccount">Home</a> // <a href="/boxes/<%= @box.slug %>/edit">Edit Box</a> // <a href="/products">Product Catalog</a>
+<a href="/myaccount"><%= current_user(session).username.capitalize %>'s Dashboard</a> // <a href="/boxes/<%= @box.slug %>/edit">Edit Box</a> // <a href="/products">Product Catalog</a>
 
 <h2>Box Name: <%= @box.name %></h2>
 <small>(created by: <%= @box.user.username %>)</small><br></br>
@@ -20,6 +20,7 @@
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Box">
 </form>
+<br></br><a href="/logout">Log Out</a>
 
 
 <!-- shows the details for one specific box -->

@@ -3,10 +3,12 @@
 <!-- show current_user.username -->
 <!-- link to dashboard -->
 <!-- link to all boxes in db // Box Catalog -->
-<h1>Product Catalog // all products in inventory</h1>
+<a href="/myaccount"><%= current_user(session).username.capitalize %>'s Dashboard</a> // <a href="/boxes">Box Catalog</a> // <a href="/products">Product Catalog</a>
+<h2>Product Catalog // all products in inventory</h2>
 
 <% Product.all.each do |product| %>
 <ul>
-  <li><h3><%= product.name %> // <small><a href="/products/<%= product.slug %>">click for more details</a></small></h3>
+  <li><%= product.name %> // <small><a href="/products/<%= product.slug %>">click for more details</a></small>
 </ul>
   <% end %>
+<br></br><a href="/logout">Log Out</a>

@@ -2,13 +2,14 @@
 <%= flash[:message] %>
 <% end %><br>
 
-<a href="/myaccount"><%= current_user(session).username %>'s Dashboard</a> // <a href="/boxes">Box Catalog</a> // <a href="/products">Product Catalog</a> // <a href="/products/<%= @product.slug %>/edit">Edit Product</a><
+<a href="/myaccount"><%= current_user(session).username.capitalize %>'s Dashboard</a> // <a href="/boxes">Box Catalog</a> // <a href="/products">Product Catalog</a>
 
 <h2>Product Name: <%= @product.name %></h2>
 
 Product Category: <%= @product.category %><br></br>
 Main Essential Oil: <%= @product.oil %><br></br>
 Benefit: <%= @product.benefit %>
+<br></br><a href="/logout">Log Out</a>
 
 <!-- shows details of one specific product -->
 
