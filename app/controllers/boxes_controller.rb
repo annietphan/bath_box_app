@@ -1,8 +1,12 @@
 class BoxesController < ApplicationController
 
   get '/boxes' do
-    # can see this even when not logged in
-    erb :'boxes/index'
+    if logged_in?(session)
+      erb :'boxes/index'
+    else
+      flash[:message] = "Please sign up/log in to view this page!"
+      redirect '/'
+    end
   end
 
   get '/boxes/new' do
@@ -27,9 +31,13 @@ class BoxesController < ApplicationController
   end
 
   get '/boxes/:slug' do
-    #can see this even if you're not logged in
       @box = Box.find_by_slug(params[:slug])
-      erb :'boxes/show'
+      if logged_in?(session)
+        erb :'boxes/show'
+      else
+        flash[:message] = "Please sign up/log in to view this page!"
+        redirect '/'
+      end
   end
 
   get '/boxes/:slug/edit' do
